@@ -24,6 +24,6 @@ I started by developing an Entity realationship diagram using QUICKDBD, a free o
 The png file of the ERD has been uploaded as Employees ERD.
 The schema was then exported from quickdbd into pgAdmin, modified and saved as the schema to create the six tables in SQL.
 The information within the tables were imported from the data folder into pgAdmin.
-Analysis of the data was then carried out using SQL queries and the queries stored in ans sql file named Employees Analysis.
+Analysis of the data was then carried out using SQL queries and the queries stored in a .sql file named Employees Analysis.
 
 All the files were then added, committed and pushed into this github repository.
