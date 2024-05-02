@@ -1,7 +1,7 @@
 -- Exported from QuickDBD: https://www.quickdatabasediagrams.com/
 
+--creating table 'departments'
 
---creating departments table
 CREATE TABLE "departments" (
     "dept_no" VARCHAR   NOT NULL,
     "dept_name" VARCHAR(255)   NOT NULL,
@@ -10,19 +10,8 @@ CREATE TABLE "departments" (
      )
 );
 
---creating dept_emp table
-CREATE TABLE "dept_emp" (
-    "emp_no" INT   NOT NULL,
-    "dept_no" VARCHAR(255)   NOT NULL
-);
+--creating table 'employees'
 
---creating dept_manager table
-CREATE TABLE "dept_manager" (
-    "dept_no" VARCHAR(255)   NOT NULL,
-    "emp_no" INT   NOT NULL
-);
-
---creating employees table
 CREATE TABLE "employees" (
     "emp_no" INT   NOT NULL,
     "emp_title" VARCHAR(255)   NOT NULL,
@@ -36,13 +25,8 @@ CREATE TABLE "employees" (
      )
 );
 
---creating salaries table
-CREATE TABLE "salaries" (
-    "emp_no" INT   NOT NULL,
-    "salary" INT   NOT NULL
-);
+--creating table 'titles'
 
---creating titles table
 CREATE TABLE "titles" (
     "title_id" VARCHAR(255)   NOT NULL,
     "title" VARCHAR(255)   NOT NULL,
@@ -50,6 +34,35 @@ CREATE TABLE "titles" (
         "title_id"
      )
 );
+
+--creating table 'dept_emp'
+
+CREATE TABLE "dept_emp" (
+    "emp_no" INT   NOT NULL,
+    "dept_no" VARCHAR(255)   NOT NULL
+);
+
+
+--creating table 'dept_manager'
+
+CREATE TABLE "dept_manager" (
+    "dept_no" VARCHAR(255)   NOT NULL,
+    "emp_no" INT   NOT NULL
+);
+
+
+--creating table 'salaries'
+
+CREATE TABLE "salaries" (
+    "emp_no" INT   NOT NULL,
+    "salary" INT   NOT NULL
+);
+
+
+--adding Foreign keys
+
+ALTER TABLE "employees" ADD CONSTRAINT "fk_employees_emp_title" FOREIGN KEY("emp_title")
+REFERENCES "titles" ("title_id");
 
 ALTER TABLE "dept_emp" ADD CONSTRAINT "fk_dept_emp_emp_no" FOREIGN KEY("emp_no")
 REFERENCES "employees" ("emp_no");
@@ -62,9 +75,6 @@ REFERENCES "departments" ("dept_no");
 
 ALTER TABLE "dept_manager" ADD CONSTRAINT "fk_dept_manager_emp_no" FOREIGN KEY("emp_no")
 REFERENCES "employees" ("emp_no");
-
-ALTER TABLE "employees" ADD CONSTRAINT "fk_employees_emp_title" FOREIGN KEY("emp_title")
-REFERENCES "titles" ("title_id");
 
 ALTER TABLE "salaries" ADD CONSTRAINT "fk_salaries_emp_no" FOREIGN KEY("emp_no")
 REFERENCES "employees" ("emp_no");
